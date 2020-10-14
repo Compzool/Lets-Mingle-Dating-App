@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mingle/bloc/authentication/bloc.dart';
 import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/pages/splash.dart';
+import 'package:mingle/ui/widgets/tabs.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -34,9 +35,7 @@ class _HomeState extends State<Home> {
           builder: (BuildContext context,AuthenticationState state){
             if(state is Uninitialized){
               return Splash();
-            }else return Container(
-              child: Text("Done"),
-            );
+            }else return Tabs();
           },
         ),
       ),
