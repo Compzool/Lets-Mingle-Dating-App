@@ -6,6 +6,7 @@ import 'package:mingle/ui/widgets/loginForm.dart';
 
 import '../constants.dart';
 
+
 class Login extends StatelessWidget {
   final UserRepository _userRepository;
 
@@ -16,21 +17,23 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Welcome", style: TextStyle(fontSize: 36.0),
-          ),
-          centerTitle: true,
-          backgroundColor: backgroundColor,
-          elevation: 0,
+      appBar: AppBar(
+        title: Text(
+          "Welcome",
+          style: TextStyle(fontSize: 36.0),
         ),
+        centerTitle: true,
+        backgroundColor: backgroundColor,
+        elevation: 0,
+      ),
       body: BlocProvider<LoginBloc>(
         create: (context) => LoginBloc(
-            userRepository: _userRepository
+          userRepository: _userRepository,
         ),
         child: LoginForm(
           userRepository: _userRepository,
         ),
-      )
+      ),
     );
   }
 }

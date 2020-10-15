@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mingle/bloc/authentication/bloc.dart';
 import 'package:mingle/repositories/userRepository.dart';
-import 'package:mingle/ui/pages/signUp.dart';
-import 'package:mingle/ui/pages/splash.dart';
-import 'package:mingle/ui/widgets/tabs.dart';
+import 'package:mingle/ui/pages/splash.dart' show Splash;
 
 import 'login.dart';
 
