@@ -6,6 +6,8 @@ import 'package:mingle/ui/pages/signUp.dart';
 import 'package:mingle/ui/pages/splash.dart';
 import 'package:mingle/ui/widgets/tabs.dart';
 
+import 'login.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -36,10 +38,11 @@ class _HomeState extends State<Home> {
           builder: (BuildContext context,AuthenticationState state){
             if(state is Uninitialized){
               return Splash();
-            }else
-              return SignUp(
+            }else {
+              return Login(
                 userRepository: _userRepository,
               );
+            }
           },
         ),
       ),
