@@ -1,17 +1,22 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mingle/bloc/authentication/authentication_bloc.dart';
 import 'package:mingle/bloc/authentication/authentication_event.dart';
 import 'package:mingle/bloc/signup/bloc.dart';
+import 'package:mingle/bloc/signup/signup_bloc.dart';
+import 'package:mingle/ui/validators.dart';
 import 'package:mingle/repositories/userRepository.dart';
-import 'package:mingle/ui/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+
+import '../constants.dart';
 
 class SignUpForm extends StatefulWidget {
   final UserRepository _userRepository;
+
   SignUpForm({@required UserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository;
+
   @override
   _SignUpFormState createState() => _SignUpFormState();
 }
@@ -21,7 +26,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final TextEditingController _passwordController = TextEditingController();
 
   SignUpBloc _signUpBloc;
-  UserRepository get _userRepository => widget._userRepository;
+  //UserRepository get _userRepository => widget._userRepository;
 
   bool get isPopulated =>
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
@@ -32,7 +37,6 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   void initState() {
-    //_signUpBloc = SignUpBloc(userRepository: _userRepository);
     _signUpBloc = BlocProvider.of<SignUpBloc>(context);
 
     _emailController.addListener(_onEmailChanged);
@@ -42,8 +46,10 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   void _onFormSubmitted() {
-    _signUpBloc.add(SignUpWithCredentialsPressed(
-        email: _emailController.text, password: _passwordController.text));
+    _signUpBloc.add(
+      SignUpWithCredentialsPressed(
+          email: _emailController.text, password: _passwordController.text),
+    );
   }
 
   @override
@@ -55,15 +61,16 @@ class _SignUpFormState extends State<SignUpForm> {
         if (state.isFailure) {
           Scaffold.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
+            ..showSnackBar(
+              SnackBar(
                 content: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text("Sign Up Failed"),
-                Icon(Icons.error),
-              ],
-            ),
-            ),
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text("Sign Up Failed"),
+                    Icon(Icons.error),
+                  ],
+                ),
+              ),
             );
         }
         if (state.isSubmitting) {
@@ -74,7 +81,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("Signing Up..."),
+                    Text("Signing up..."),
                     CircularProgressIndicator(),
                   ],
                 ),
@@ -87,9 +94,8 @@ class _SignUpFormState extends State<SignUpForm> {
           Navigator.of(context).pop();
         }
       },
-      child: BlocBuilder<SignUpBloc,SignUpState>(
-
-        builder: ( context, state) {
+      child: BlocBuilder<SignUpBloc, SignUpState>(
+        builder: (context, state) {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Container(
@@ -128,11 +134,11 @@ class _SignUpFormState extends State<SignUpForm> {
                             color: Colors.white, fontSize: size.height * 0.03),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
+                          BorderSide(color: Colors.white, width: 1.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
+                          BorderSide(color: Colors.white, width: 1.0),
                         ),
                       ),
                     ),
@@ -145,7 +151,9 @@ class _SignUpFormState extends State<SignUpForm> {
                       obscureText: true,
                       autovalidate: true,
                       validator: (_) {
-                        return !state.isPasswordValid ? "Invalid Password" : null;
+                        return !state.isPasswordValid
+                            ? "Invalid Password"
+                            : null;
                       },
                       decoration: InputDecoration(
                         labelText: "Password",
@@ -163,26 +171,27 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(size.height * 0.2),
+                    padding: EdgeInsets.all(size.height * 0.02),
                     child: GestureDetector(
                       onTap: isSignUpButtonEnabled(state)
                           ? _onFormSubmitted
                           : null,
                       child: Container(
                         width: size.width * 0.8,
-                        height: size.height *0.86,
+                        height: size.height * 0.06,
                         decoration: BoxDecoration(
-                          color: isSignUpButtonEnabled(state)? Colors.white : Colors.grey,
-                          borderRadius: BorderRadius.circular(size.height*0.05),
+                          color: isSignUpButtonEnabled(state)
+                              ? Colors.white
+                              : Colors.white,
+                          borderRadius:
+                          BorderRadius.circular(size.height * 0.05),
                         ),
                         child: Center(
                           child: Text(
                             "Sign Up",
                             style: TextStyle(
-                              fontSize: size.height * 0.025,
-                              color: Colors.blue
-                            ),
-
+                                fontSize: size.height * 0.025,
+                                color: Colors.blue),
                           ),
                         ),
                       ),
@@ -213,6 +222,7 @@ class _SignUpFormState extends State<SignUpForm> {
   void dispose() {
     _passwordController.dispose();
     _emailController.dispose();
+
     super.dispose();
   }
 }

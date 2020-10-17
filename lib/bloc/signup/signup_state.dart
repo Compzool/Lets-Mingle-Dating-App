@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-
+import 'package:mingle/ui/validators.dart';
 @immutable
 class SignUpState {
   final bool isEmailValid;

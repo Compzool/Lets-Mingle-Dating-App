@@ -30,7 +30,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => _authenticationBloc,
-
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: BlocBuilder(

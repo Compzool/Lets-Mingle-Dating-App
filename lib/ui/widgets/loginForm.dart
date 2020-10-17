@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mingle/bloc/authentication/authentication_bloc.dart';
-import 'package:mingle/bloc/authentication/bloc.dart';
+import 'package:mingle/bloc/authentication/authentication_event.dart';
 import 'package:mingle/bloc/login/bloc.dart';
 import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/constants.dart';
 import 'package:mingle/ui/pages/signUp.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginForm extends StatefulWidget {
   final UserRepository _userRepository;
@@ -14,6 +13,7 @@ class LoginForm extends StatefulWidget {
   LoginForm({@required UserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository;
+
   @override
   _LoginFormState createState() => _LoginFormState();
 }
@@ -55,8 +55,10 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _onFormSubmitted() {
-    _loginBloc.add(LoginWithCredentialsPressed(
-        email: _emailController.text, password: _passwordController.text));
+    _loginBloc.add(
+      LoginWithCredentialsPressed(
+          email: _emailController.text, password: _passwordController.text),
+    );
   }
 
   @override
@@ -88,7 +90,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
             );
         }
-        ;
+
         if (state.isSubmitting) {
           print("isSubmitting");
           Scaffold.of(context)
@@ -98,7 +100,7 @@ class _LoginFormState extends State<LoginForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("Loggin In..."),
+                    Text(" Logging In..."),
                     CircularProgressIndicator(),
                   ],
                 ),
@@ -150,11 +152,11 @@ class _LoginFormState extends State<LoginForm> {
                             color: Colors.white, fontSize: size.height * 0.03),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
+                          BorderSide(color: Colors.white, width: 1.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
+                          BorderSide(color: Colors.white, width: 1.0),
                         ),
                       ),
                     ),
@@ -177,32 +179,32 @@ class _LoginFormState extends State<LoginForm> {
                             color: Colors.white, fontSize: size.height * 0.03),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
+                          BorderSide(color: Colors.white, width: 1.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
+                          BorderSide(color: Colors.white, width: 1.0),
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(size.height * 0.2),
+                    padding: EdgeInsets.all(size.height * 0.02),
                     child: Column(
-                      children: [
+                      children: <Widget>[
                         GestureDetector(
                           onTap: isLoginButtonEnabled(state)
                               ? _onFormSubmitted
                               : null,
                           child: Container(
                             width: size.width * 0.8,
-                            height: size.height * 0.86,
+                            height: size.height * 0.06,
                             decoration: BoxDecoration(
                               color: isLoginButtonEnabled(state)
                                   ? Colors.white
-                                  : Colors.grey,
+                                  : Colors.white,
                               borderRadius:
-                                  BorderRadius.circular(size.height * 0.05),
+                              BorderRadius.circular(size.height * 0.05),
                             ),
                             child: Center(
                               child: Text(
@@ -220,11 +222,13 @@ class _LoginFormState extends State<LoginForm> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) {
-                                return SignUp(
-                                  userRepository: _userRepository,
-                                );
-                              }),
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return SignUp(
+                                    userRepository: _userRepository,
+                                  );
+                                },
+                              ),
                             );
                           },
                           child: Text(
@@ -236,7 +240,7 @@ class _LoginFormState extends State<LoginForm> {
                         )
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

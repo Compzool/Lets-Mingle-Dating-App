@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mingle/bloc/signup/signup_bloc.dart';
 import 'package:mingle/bloc/signup/bloc.dart';
 import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/constants.dart';
 import 'package:mingle/ui/widgets/signUpForm.dart';
-
+import 'package:mingle/ui/validators.dart';
 class SignUp extends StatelessWidget {
   final UserRepository _userRepository;
 
