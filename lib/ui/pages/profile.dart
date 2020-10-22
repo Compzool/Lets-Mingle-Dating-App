@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mingle/bloc/profile/profile_bloc.dart';
+import 'package:mingle/bloc/profile/bloc.dart';
 import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/constants.dart';
 import 'package:mingle/ui/widgets/profileForm.dart';
-
-
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Profile extends StatelessWidget {
   final _userRepository;
@@ -33,4 +31,6 @@ class Profile extends StatelessWidget {
       ),
     );
   }
+
 }
+

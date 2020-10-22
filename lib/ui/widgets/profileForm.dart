@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,8 +12,8 @@ import 'package:mingle/bloc/authentication/authentication_event.dart';
 import 'package:mingle/bloc/profile/profile_bloc.dart';
 import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/widgets/gender.dart';
-
 import '../constants.dart';
+
 
 class ProfileForm extends StatefulWidget {
   final UserRepository _userRepository;
@@ -30,11 +29,14 @@ class ProfileForm extends StatefulWidget {
 class _ProfileFormState extends State<ProfileForm> {
   final TextEditingController _nameController = TextEditingController();
 
+
   String gender, interedtedIn;
+
   DateTime age;
   File photo;
   GeoPoint location;
   ProfileBloc _profileBloc;
+
 
   UserRepository get _userRepository => widget._userRepository;
 
@@ -44,6 +46,7 @@ class _ProfileFormState extends State<ProfileForm> {
       interedtedIn != null &&
       photo != null &&
       age != null;
+
 
   bool isButtonEnabled(ProfileState state) {
     return isFilled && !state.isSubmitting;
@@ -61,6 +64,7 @@ class _ProfileFormState extends State<ProfileForm> {
     _profileBloc.add(
       Submitted(
           name: _nameController.text,
+
           gender: gender,
           interestedIn: interedtedIn,
           age: age,
@@ -99,6 +103,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
+
                     Text('Profile Creation Unsuccessful'),
                     Icon(Icons.error)
                   ],
@@ -144,6 +149,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       backgroundColor: Colors.transparent,
                       child: photo == null
                           ? GestureDetector(
+
                               onTap: () async {
                                 File getPic = await FilePicker.getFile(
                                     type: FileType.image);
@@ -170,6 +176,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 backgroundImage: FileImage(photo),
                               ),
                             ),
+
                     ),
                   ),
                   textFieldWidget(_nameController, "Name", size),
@@ -204,7 +211,9 @@ class _ProfileFormState extends State<ProfileForm> {
                         padding: EdgeInsets.symmetric(
                             horizontal: size.height * 0.02),
                         child: Text(
+
                           "You are",
+
                           style: TextStyle(
                               color: Colors.white, fontSize: size.width * 0.09),
                         ),
@@ -219,6 +228,7 @@ class _ProfileFormState extends State<ProfileForm> {
                               gender = "Female";
                             });
                           }),
+
                           genderWidget(
                               FontAwesomeIcons.mars, "Male", size, gender, () {
                             setState(() {
@@ -268,6 +278,7 @@ class _ProfileFormState extends State<ProfileForm> {
                               interedtedIn = "Male";
                             });
                           }),
+
                           genderWidget(
                             FontAwesomeIcons.transgender,
                             "Transgender",
@@ -277,6 +288,7 @@ class _ProfileFormState extends State<ProfileForm> {
                               setState(
                                 () {
                                   interedtedIn = "Transgender";
+
                                 },
                               );
                             },
@@ -286,6 +298,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     ],
                   ),
                   Padding(
+
                       padding: EdgeInsets.symmetric(vertical: size.height*0.02),
                     child: GestureDetector(
                       onTap: (){
@@ -307,6 +320,7 @@ class _ProfileFormState extends State<ProfileForm> {
                             color: Colors.blue
                           ),),
                         ),
+
                       ),
                     ),
                   )
@@ -324,6 +338,7 @@ Widget textFieldWidget(controller, text, size) {
   return Padding(
     padding: EdgeInsets.all(size.height * 0.02),
     child: TextField(
+
         controller: controller,
         decoration: InputDecoration(
           labelText: text,
@@ -338,3 +353,4 @@ Widget textFieldWidget(controller, text, size) {
         )),
   );
 }
+

@@ -5,11 +5,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class UserRepository {
   final FirebaseAuth _firebaseAuth;
-  final FirebaseFirestore _firestore;
+  final Firestore _firestore;
 
-  UserRepository({FirebaseAuth firebaseAuth, FirebaseFirestore firestore})
+  UserRepository({FirebaseAuth firebaseAuth, Firestore firestore})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _firestore = firestore ?? FirebaseFirestore.instance;
+        _firestore = firestore ?? Firestore.instance;
 
   Future<void> signInWithEmail(String email, String password) {
     return _firebaseAuth.signInWithEmailAndPassword(
@@ -18,9 +18,9 @@ class UserRepository {
 
   Future<bool> isFirstTime(String userId) async {
     bool exist;
-    await FirebaseFirestore.instance
+    await Firestore.instance
         .collection('users')
-        .doc(userId)
+        .document(userId)
         .get()
         .then((user) {
       exist = user.exists;
@@ -40,12 +40,12 @@ class UserRepository {
   }
 
   Future<bool> isSignedIn() async {
-    final currentUser = _firebaseAuth.currentUser;
+    final currentUser = _firebaseAuth.currentUser();
     return currentUser != null;
   }
 
   Future<String> getUser() async {
-    return (await _firebaseAuth.currentUser).uid;
+    return (await _firebaseAuth.currentUser()).uid;
   }
 
   //profile setup
@@ -67,7 +67,7 @@ class UserRepository {
 
     return await storageUploadTask.onComplete.then((ref) async {
       await ref.ref.getDownloadURL().then((url) async {
-        await _firestore.collection('users').doc(userId).set({
+        await _firestore.collection('users').document(userId).setData({
           'uid': userId,
           'photoUrl': url,
           'name': name,

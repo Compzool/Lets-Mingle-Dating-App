@@ -1,12 +1,9 @@
 import 'package:mingle/bloc/authentication/authentication_bloc.dart';
 import 'package:mingle/bloc/authentication/authentication_event.dart';
 import 'package:mingle/bloc/signup/bloc.dart';
-import 'package:mingle/bloc/signup/signup_bloc.dart';
-import 'package:mingle/ui/validators.dart';
 import 'package:mingle/repositories/userRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 import '../constants.dart';
 
@@ -108,7 +105,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 children: <Widget>[
                   Center(
                     child: Text(
-                      "Mingle",
+                      "Chill",
                       style: TextStyle(
                           fontSize: size.width * 0.2, color: Colors.white),
                     ),
@@ -186,7 +183,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         decoration: BoxDecoration(
                           color: isSignUpButtonEnabled(state)
                               ? Colors.white
-                              : Colors.white,
+                              : Colors.grey,
                           borderRadius:
                           BorderRadius.circular(size.height * 0.05),
                         ),
