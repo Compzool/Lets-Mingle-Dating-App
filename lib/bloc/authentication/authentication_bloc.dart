@@ -9,7 +9,7 @@ class AuthenticationBloc
   final UserRepository _userRepository;
 
   AuthenticationBloc({@required UserRepository userRepository})
-      : assert(userRepository != null),
+      :assert(userRepository != null),
         _userRepository = userRepository;
 
   @override

@@ -1,17 +1,21 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mingle/bloc/blocdelegate.dart';
+import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/pages/home.dart';
+import 'bloc/authentication/bloc.dart';
 
 
-Future<void> main() async {
+main(){
   WidgetsFlutterBinding.ensureInitialized();
-
+  final UserRepository _userRepository = UserRepository();
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  await Firebase.initializeApp();
 
-  runApp(Home());
+  runApp(BlocProvider(
+      create: (context) => AuthenticationBloc(userRepository: _userRepository)
+        ..add(AppStarted()),
+      child: Home(userRepository: _userRepository)));
 
 }
+

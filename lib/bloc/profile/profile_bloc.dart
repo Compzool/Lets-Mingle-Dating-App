@@ -1,17 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:mingle/repositories/userRepository.dart';
-import 'package:rxdart/rxdart.dart';
-part 'profile_event.dart';
-part "profile_state.dart";
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:meta/meta.dart';
+import './bloc.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   UserRepository _userRepository;
+
   ProfileBloc({@required UserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository;
@@ -20,19 +17,17 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileState get initialState => ProfileState.empty();
 
   @override
-  Stream<ProfileState> mapEventToState(
-    ProfileEvent event,
-  ) async* {
+  Stream<ProfileState> mapEventToState(ProfileEvent event) async* {
     if (event is NameChanged) {
       yield* _mapNameChangedToState(event.name);
     } else if (event is AgeChanged) {
       yield* _mapAgeChangedToState(event.age);
     } else if (event is GenderChanged) {
       yield* _mapGenderChangedToState(event.gender);
-    } else if (event is LocationChanged) {
-      yield* _mapLocationChangedToState(event.location);
     } else if (event is InterestedInChanged) {
       yield* _mapInterestedInChangedToState(event.interestedIn);
+    } else if (event is LocationChanged) {
+      yield* _mapLocationChangedToState(event.location);
     } else if (event is PhotoChanged) {
       yield* _mapPhotoChangedToState(event.photo);
     } else if (event is Submitted) {
@@ -87,12 +82,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Stream<ProfileState> _mapSubmittedToState(
       {File photo,
-      String gender,
-      String name,
-      String userId,
-      DateTime age,
-      GeoPoint location,
-      String interestedIn}) async* {
+        String gender,
+        String name,
+        String userId,
+        DateTime age,
+        GeoPoint location,
+        String interestedIn}) async* {
     yield ProfileState.loading();
     try {
       await _userRepository.profileSetup(

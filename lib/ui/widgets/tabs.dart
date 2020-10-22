@@ -1,3 +1,5 @@
+import 'package:mingle/bloc/authentication/authentication_bloc.dart';
+import 'package:mingle/bloc/authentication/authentication_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mingle/ui/constants.dart';
@@ -5,7 +7,10 @@ import 'package:mingle/ui/pages/matches.dart';
 import 'package:mingle/ui/pages/messages.dart';
 import 'package:mingle/ui/pages/search.dart';
 
+
 class Tabs extends StatelessWidget {
+  final String userId;
+  const Tabs({this.userId});
   @override
   Widget build(BuildContext context) {
     List<Widget> pages =[
