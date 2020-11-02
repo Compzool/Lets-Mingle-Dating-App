@@ -2,7 +2,6 @@ import 'package:mingle/bloc/authentication/authentication_bloc.dart';
 import 'package:mingle/bloc/authentication/authentication_state.dart';
 import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/pages/profile.dart';
-
 import 'package:mingle/ui/pages/splash.dart';
 import 'package:mingle/ui/widgets/tabs.dart';
 import 'package:flutter/material.dart';

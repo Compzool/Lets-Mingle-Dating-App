@@ -1,7 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mingle/bloc/authentication/authentication_bloc.dart';
-import 'package:mingle/bloc/authentication/authentication_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mingle/bloc/authentication/bloc.dart';
 import 'package:mingle/ui/constants.dart';
 import 'package:mingle/ui/pages/matches.dart';
 import 'package:mingle/ui/pages/messages.dart';
@@ -14,7 +15,7 @@ class Tabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> pages =[
-      Search(),
+      Search(userId: userId,),
       Matches(),
       Messages(),
     ];
@@ -26,12 +27,14 @@ class Tabs extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Chill",style: TextStyle(fontSize: 30.0,fontWeight: FontWeight.bold),
+          title: Text("Mingle",style: TextStyle(fontSize: 30.0,fontWeight: FontWeight.bold),
           ),
           actions: <Widget>[
             IconButton(
                 icon: Icon(Icons.exit_to_app),
-                onPressed: (){})
+                onPressed: (){
+                  BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+                })
           ],
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(48.0),
