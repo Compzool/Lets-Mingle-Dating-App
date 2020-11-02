@@ -73,11 +73,11 @@ class Submitted extends ProfileEvent {
 
   Submitted(
       {@required this.name,
-        @required this.gender,
-        @required this.interestedIn,
-        @required this.age,
-        @required this.location,
-        @required this.photo});
+      @required this.gender,
+      @required this.interestedIn,
+      @required this.age,
+      @required this.location,
+      @required this.photo});
 
   @override
   List<Object> get props => [location, name, age, gender, interestedIn, photo];

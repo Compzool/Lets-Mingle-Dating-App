@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 Widget profileWidget(
     {padding,
-      photoHeight,
-      photoWidth,
-      clipRadius,
-      photo,
-      containerHeight,
-      containerWidth,
-      child}) {
+    photoHeight,
+    photoWidth,
+    clipRadius,
+    photo,
+    containerHeight,
+    containerWidth,
+    child}) {
   return Padding(
     padding: EdgeInsets.all(padding),
     child: Container(

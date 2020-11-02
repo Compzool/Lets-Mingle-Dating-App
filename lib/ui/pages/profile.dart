@@ -31,6 +31,4 @@ class Profile extends StatelessWidget {
       ),
     );
   }
-
 }
-

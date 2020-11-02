@@ -82,12 +82,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Stream<ProfileState> _mapSubmittedToState(
       {File photo,
-        String gender,
-        String name,
-        String userId,
-        DateTime age,
-        GeoPoint location,
-        String interestedIn}) async* {
+      String gender,
+      String name,
+      String userId,
+      DateTime age,
+      GeoPoint location,
+      String interestedIn}) async* {
     yield ProfileState.loading();
     try {
       await _userRepository.profileSetup(

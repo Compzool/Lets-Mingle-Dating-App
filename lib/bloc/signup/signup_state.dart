@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:mingle/ui/validators.dart';
+
 @immutable
 class SignUpState {
   final bool isEmailValid;
@@ -12,10 +13,10 @@ class SignUpState {
 
   SignUpState(
       {@required this.isEmailValid,
-        @required this.isPasswordValid,
-        @required this.isSubmitting,
-        @required this.isSuccess,
-        @required this.isFailure});
+      @required this.isPasswordValid,
+      @required this.isSubmitting,
+      @required this.isSuccess,
+      @required this.isFailure});
 
   //initial state
   factory SignUpState.empty() {

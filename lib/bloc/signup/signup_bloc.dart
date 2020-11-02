@@ -18,9 +18,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
   @override
   Stream<SignUpState> transformEvents(
-      Stream<SignUpEvent> events,
-      Stream<SignUpState> Function(SignUpEvent event) next,
-      ) {
+    Stream<SignUpEvent> events,
+    Stream<SignUpState> Function(SignUpEvent event) next,
+  ) {
     final nonDebounceStream = events.where((event) {
       return (event is! EmailChanged || event is! PasswordChanged);
     });
@@ -37,8 +37,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
   @override
   Stream<SignUpState> mapEventToState(
-      SignUpEvent event,
-      ) async* {
+    SignUpEvent event,
+  ) async* {
     if (event is EmailChanged) {
       yield* _mapEmailChangedToState(event.email);
     } else if (event is PasswordChanged) {

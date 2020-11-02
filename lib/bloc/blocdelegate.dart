@@ -1,12 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SimpleBlocDelegate extends BlocDelegate{
-
+class SimpleBlocDelegate extends BlocDelegate {
   @override
-  void onEvent(Bloc bloc,Object event) {
+  void onEvent(Bloc bloc, Object event) {
     print(event);
     super.onEvent(bloc, event);
-
   }
 
   @override
@@ -14,6 +12,7 @@ class SimpleBlocDelegate extends BlocDelegate{
     print(error);
     super.onError(bloc, error, stackTrace);
   }
+
   @override
   void onTransition(Bloc bloc, Transition transition) {
     print(transition);

@@ -6,9 +6,7 @@ Widget genderWidget(icon, text, size, selected, onTap){
     child: Column(
       children: <Widget>[
         Icon(
-
           icon,
-
           size: size.height *0.11,
           color: selected == text?Colors.white: Colors.black,
         ),

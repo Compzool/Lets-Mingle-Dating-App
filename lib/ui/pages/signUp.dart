@@ -6,6 +6,7 @@ import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/constants.dart';
 import 'package:mingle/ui/widgets/signUpForm.dart';
 import 'package:mingle/ui/validators.dart';
+
 class SignUp extends StatelessWidget {
   final UserRepository _userRepository;
 
@@ -17,20 +18,19 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Sign Up", style: TextStyle(fontSize: 36.0),
+          title: Text(
+            "Sign Up",
+            style: TextStyle(fontSize: 36.0),
           ),
           centerTitle: true,
           backgroundColor: backgroundColor,
           elevation: 0,
         ),
         body: BlocProvider<SignUpBloc>(
-          create: (context) => SignUpBloc(
-              userRepository: _userRepository
-          ),
+          create: (context) => SignUpBloc(userRepository: _userRepository),
           child: SignUpForm(
             userRepository: _userRepository,
           ),
-        )
-    );
+        ));
   }
 }

@@ -1,19 +1,18 @@
 import 'dart:io';
+
+import 'package:mingle/bloc/authentication/authentication_bloc.dart';
+import 'package:mingle/bloc/authentication/authentication_event.dart';
+import 'package:mingle/bloc/profile/bloc.dart';
+import 'package:mingle/repositories/userRepository.dart';
+import 'package:mingle/ui/constants.dart';
+import 'package:mingle/ui/widgets/gender.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:mingle/bloc/authentication/authentication_bloc.dart';
-import 'package:mingle/bloc/authentication/authentication_event.dart';
-import 'package:mingle/bloc/profile/profile_bloc.dart';
-import 'package:mingle/repositories/userRepository.dart';
-import 'package:mingle/ui/widgets/gender.dart';
-import '../constants.dart';
-
 
 class ProfileForm extends StatefulWidget {
   final UserRepository _userRepository;
@@ -29,24 +28,20 @@ class ProfileForm extends StatefulWidget {
 class _ProfileFormState extends State<ProfileForm> {
   final TextEditingController _nameController = TextEditingController();
 
-
-  String gender, interedtedIn;
-
+  String gender, interestedIn;
   DateTime age;
   File photo;
   GeoPoint location;
   ProfileBloc _profileBloc;
 
-
-  UserRepository get _userRepository => widget._userRepository;
+  //UserRepository get _userRepository => widget._userRepository;
 
   bool get isFilled =>
       _nameController.text.isNotEmpty &&
-      gender != null &&
-      interedtedIn != null &&
-      photo != null &&
-      age != null;
-
+          gender != null &&
+          interestedIn != null &&
+          photo != null &&
+          age != null;
 
   bool isButtonEnabled(ProfileState state) {
     return isFilled && !state.isSubmitting;
@@ -64,11 +59,10 @@ class _ProfileFormState extends State<ProfileForm> {
     _profileBloc.add(
       Submitted(
           name: _nameController.text,
-
-          gender: gender,
-          interestedIn: interedtedIn,
           age: age,
           location: location,
+          gender: gender,
+          interestedIn: interestedIn,
           photo: photo),
     );
   }
@@ -77,7 +71,6 @@ class _ProfileFormState extends State<ProfileForm> {
   void initState() {
     _getLocation();
     _profileBloc = BlocProvider.of<ProfileBloc>(context);
-
     super.initState();
   }
 
@@ -103,8 +96,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-
-                    Text('Profile Creation Unsuccessful'),
+                    Text('Profile Creation Unsuccesful'),
                     Icon(Icons.error)
                   ],
                 ),
@@ -149,34 +141,32 @@ class _ProfileFormState extends State<ProfileForm> {
                       backgroundColor: Colors.transparent,
                       child: photo == null
                           ? GestureDetector(
-
-                              onTap: () async {
-                                File getPic = await FilePicker.getFile(
-                                    type: FileType.image);
-                                if (getPic != null) {
-                                  setState(() {
-                                    photo = getPic;
-                                  });
-                                }
-                              },
-                              child: Image.asset('assets/profilephoto.png'),
-                            )
+                        onTap: () async {
+                          File getPic = await FilePicker.getFile(
+                              type: FileType.image);
+                          if (getPic != null) {
+                            setState(() {
+                              photo = getPic;
+                            });
+                          }
+                        },
+                        child: Image.asset('assets/profilephoto.png'),
+                      )
                           : GestureDetector(
-                              onTap: () async {
-                                File getPic = await FilePicker.getFile(
-                                    type: FileType.image);
-                                if (getPic != null) {
-                                  setState(() {
-                                    photo = getPic;
-                                  });
-                                }
-                              },
-                              child: CircleAvatar(
-                                radius: size.width * 0.3,
-                                backgroundImage: FileImage(photo),
-                              ),
-                            ),
-
+                        onTap: () async {
+                          File getPic = await FilePicker.getFile(
+                              type: FileType.image);
+                          if (getPic != null) {
+                            setState(() {
+                              photo = getPic;
+                            });
+                          }
+                        },
+                        child: CircleAvatar(
+                          radius: size.width * 0.3,
+                          backgroundImage: FileImage(photo),
+                        ),
+                      ),
                     ),
                   ),
                   textFieldWidget(_nameController, "Name", size),
@@ -211,9 +201,7 @@ class _ProfileFormState extends State<ProfileForm> {
                         padding: EdgeInsets.symmetric(
                             horizontal: size.height * 0.02),
                         child: Text(
-
-                          "You are",
-
+                          "You Are",
                           style: TextStyle(
                               color: Colors.white, fontSize: size.width * 0.09),
                         ),
@@ -223,12 +211,11 @@ class _ProfileFormState extends State<ProfileForm> {
                         children: <Widget>[
                           genderWidget(
                               FontAwesomeIcons.venus, "Female", size, gender,
-                              () {
-                            setState(() {
-                              gender = "Female";
-                            });
-                          }),
-
+                                  () {
+                                setState(() {
+                                  gender = "Female";
+                                });
+                              }),
                           genderWidget(
                               FontAwesomeIcons.mars, "Male", size, gender, () {
                             setState(() {
@@ -240,9 +227,9 @@ class _ProfileFormState extends State<ProfileForm> {
                             "Transgender",
                             size,
                             gender,
-                            () {
-                              setState(
                                 () {
+                              setState(
+                                    () {
                                   gender = "Transgender";
                                 },
                               );
@@ -266,29 +253,27 @@ class _ProfileFormState extends State<ProfileForm> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
                           genderWidget(FontAwesomeIcons.venus, "Female", size,
-                              interedtedIn, () {
-                            setState(() {
-                              interedtedIn = "Female";
-                            });
-                          }),
+                              interestedIn, () {
+                                setState(() {
+                                  interestedIn = "Female";
+                                });
+                              }),
                           genderWidget(
-                              FontAwesomeIcons.mars, "Male", size, interedtedIn,
-                              () {
-                            setState(() {
-                              interedtedIn = "Male";
-                            });
-                          }),
-
+                              FontAwesomeIcons.mars, "Male", size, interestedIn,
+                                  () {
+                                setState(() {
+                                  interestedIn = "Male";
+                                });
+                              }),
                           genderWidget(
                             FontAwesomeIcons.transgender,
                             "Transgender",
                             size,
-                            interedtedIn,
-                            () {
-                              setState(
+                            interestedIn,
                                 () {
-                                  interedtedIn = "Transgender";
-
+                              setState(
+                                    () {
+                                  interestedIn = "Transgender";
                                 },
                               );
                             },
@@ -298,29 +283,30 @@ class _ProfileFormState extends State<ProfileForm> {
                     ],
                   ),
                   Padding(
-
-                      padding: EdgeInsets.symmetric(vertical: size.height*0.02),
+                    padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
                     child: GestureDetector(
-                      onTap: (){
-                       if(isButtonEnabled(state)){
-                         _onSubmitted();
-                       }else{}
+                      onTap: () {
+                        if (isButtonEnabled(state)) {
+                          _onSubmitted();
+                        } else {}
                       },
                       child: Container(
-                        width: size.width*0.8,
-                          height: size.height*0.06,
+                        width: size.width * 0.8,
+                        height: size.height * 0.06,
                         decoration: BoxDecoration(
-                          color: isButtonEnabled(state)?Colors.white:Colors.grey,
-                          borderRadius: BorderRadius.circular(size.height*0.05),
-
+                          color: isButtonEnabled(state)
+                              ? Colors.white
+                              : Colors.grey,
+                          borderRadius:
+                          BorderRadius.circular(size.height * 0.05),
                         ),
                         child: Center(
-                          child: Text("Save",style: TextStyle(
-                            fontSize: size.height*0.025,
-                            color: Colors.blue
-                          ),),
-                        ),
-
+                            child: Text(
+                              "Save",
+                              style: TextStyle(
+                                  fontSize: size.height * 0.025,
+                                  color: Colors.blue),
+                            )),
                       ),
                     ),
                   )
@@ -338,19 +324,18 @@ Widget textFieldWidget(controller, text, size) {
   return Padding(
     padding: EdgeInsets.all(size.height * 0.02),
     child: TextField(
-
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: text,
-          labelStyle:
-              TextStyle(color: Colors.white, fontSize: size.height * 0.03),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 1.0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 1.0),
-          ),
-        )),
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: text,
+        labelStyle:
+        TextStyle(color: Colors.white, fontSize: size.height * 0.03),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.white, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.white, width: 1.0),
+        ),
+      ),
+    ),
   );
 }
-

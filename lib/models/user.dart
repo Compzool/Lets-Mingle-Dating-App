@@ -11,10 +11,10 @@ class User {
 
   User(
       {this.uid,
-        this.name,
-        this.gender,
-        this.interestedIn,
-        this.photo,
-        this.age,
-        this.location});
+      this.name,
+      this.gender,
+      this.interestedIn,
+      this.photo,
+      this.age,
+      this.location});
 }
