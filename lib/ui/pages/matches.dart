@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'messaging.dart';
 
 class Matches extends StatefulWidget {
@@ -59,7 +58,7 @@ class _MatchesState extends State<Matches> {
             slivers: <Widget>[
               SliverAppBar(
                 pinned: true,
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.pinkAccent,
                 title: Text(
                   "Matched User",
                   style: TextStyle(color: Colors.black, fontSize: 30.0),
@@ -213,7 +212,7 @@ class _MatchesState extends State<Matches> {
                 },
               ),
               SliverAppBar(
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.pinkAccent,
                 pinned: true,
                 title: Text(
                   "Someone Likes You",
@@ -296,7 +295,7 @@ class _MatchesState extends State<Matches> {
                                                   children: <Widget>[
                                                     Icon(
                                                       Icons.location_on,
-                                                      color: Colors.white,
+                                                      color: Colors.pinkAccent,
                                                     ),
                                                     Text(
                                                       difference != null
@@ -306,7 +305,7 @@ class _MatchesState extends State<Matches> {
                                                           " km away"
                                                           : "away",
                                                       style: TextStyle(
-                                                        color: Colors.white,
+                                                        color: Colors.pinkAccent,
                                                       ),
                                                     ),
                                                   ],

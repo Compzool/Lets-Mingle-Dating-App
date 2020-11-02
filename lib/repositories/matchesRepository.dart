@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mingle/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MatchesRepository {
   final Firestore _firestore;
@@ -17,7 +17,7 @@ class MatchesRepository {
 
   Stream<QuerySnapshot> getSelectedList(userId) {
     return _firestore
-        .collection('user')
+        .collection('users')
         .document(userId)
         .collection('selectedList')
         .snapshots();
@@ -25,6 +25,7 @@ class MatchesRepository {
 
   Future<User> getUserDetails(userId) async {
     User _user = User();
+
     await _firestore.collection('users').document(userId).get().then((user) {
       _user.uid = user.documentID;
       _user.name = user['name'];
