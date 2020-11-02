@@ -17,7 +17,9 @@ class Tabs extends StatelessWidget {
       Search(
         userId: userId,
       ),
-      Matches(),
+      Matches(
+        userId: userId,
+      ),
       Messages(),
     ];
     return Theme(

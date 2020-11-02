@@ -28,6 +28,7 @@ class MatchesRepository {
     await _firestore.collection('users').document(userId).get().then((user) {
       _user.uid = user.documentID;
       _user.name = user['name'];
+      _user.photo = user['photoUrl'];
       _user.age = user['age'];
       _user.location = user['location'];
       _user.gender = user['gender'];
