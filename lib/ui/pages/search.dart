@@ -123,7 +123,7 @@ class _SearchState extends State<Search> {
                         Text(
                           difference != null
                               ? (difference / 1000).floor().toString() +
-                              "km away"
+                                  "km away"
                               : "away",
                           style: TextStyle(color: Colors.white),
                         )

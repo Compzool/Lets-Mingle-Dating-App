@@ -105,5 +105,4 @@ class SearchRepository {
 
     return _user;
   }
-
 }

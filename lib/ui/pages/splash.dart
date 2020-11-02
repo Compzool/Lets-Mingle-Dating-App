@@ -11,11 +11,11 @@ class Splash extends StatelessWidget {
         width: size.width,
         child: Center(
           child: Text(
-              "Mingle",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: size.width *0.2,
-                  ),
+            "Mingle",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: size.width * 0.2,
+            ),
           ),
         ),
       ),

@@ -17,8 +17,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   @override
   Stream<SearchState> mapEventToState(
-      SearchEvent event,
-      ) async* {
+    SearchEvent event,
+  ) async* {
     if (event is SelectUserEvent) {
       yield* _mapSelectToState(
           currentUserId: event.currentUserId,
@@ -39,9 +39,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Stream<SearchState> _mapSelectToState(
       {String currentUserId,
-        String selectedUserId,
-        String name,
-        String photoUrl}) async* {
+      String selectedUserId,
+      String name,
+      String photoUrl}) async* {
     yield LoadingState();
 
     User user = await _searchRepository.chooseUser(

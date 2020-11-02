@@ -12,10 +12,10 @@ class LoginState {
 
   LoginState(
       {@required this.isEmailValid,
-        @required this.isPasswordValid,
-        @required this.isSubmitting,
-        @required this.isSuccess,
-        @required this.isFailure});
+      @required this.isPasswordValid,
+      @required this.isSubmitting,
+      @required this.isSuccess,
+      @required this.isFailure});
 
   //initial state
   factory LoginState.empty() {

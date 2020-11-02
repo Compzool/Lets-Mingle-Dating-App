@@ -131,11 +131,11 @@ class _SignUpFormState extends State<SignUpForm> {
                             color: Colors.white, fontSize: size.height * 0.03),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.white, width: 1.0),
+                              BorderSide(color: Colors.white, width: 1.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.white, width: 1.0),
+                              BorderSide(color: Colors.white, width: 1.0),
                         ),
                       ),
                     ),
@@ -158,11 +158,11 @@ class _SignUpFormState extends State<SignUpForm> {
                             color: Colors.white, fontSize: size.height * 0.03),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.white, width: 1.0),
+                              BorderSide(color: Colors.white, width: 1.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.white, width: 1.0),
+                              BorderSide(color: Colors.white, width: 1.0),
                         ),
                       ),
                     ),
@@ -181,7 +181,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               ? Colors.white
                               : Colors.grey,
                           borderRadius:
-                          BorderRadius.circular(size.height * 0.05),
+                              BorderRadius.circular(size.height * 0.05),
                         ),
                         child: Center(
                           child: Text(

@@ -14,10 +14,10 @@ class ProfileState {
 
   bool get isFormValid =>
       isPhotoEmpty &&
-          isNameEmpty &&
-          isAgeEmpty &&
-          isGenderEmpty &&
-          isInterestedInEmpty;
+      isNameEmpty &&
+      isAgeEmpty &&
+      isGenderEmpty &&
+      isInterestedInEmpty;
 
   ProfileState({
     @required this.isPhotoEmpty,

@@ -5,17 +5,13 @@ import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/pages/home.dart';
 import 'bloc/authentication/bloc.dart';
 
-
-main(){
+main() {
   WidgetsFlutterBinding.ensureInitialized();
   final UserRepository _userRepository = UserRepository();
   BlocSupervisor.delegate = SimpleBlocDelegate();
-
 
   runApp(BlocProvider(
       create: (context) => AuthenticationBloc(userRepository: _userRepository)
         ..add(AppStarted()),
       child: Home(userRepository: _userRepository)));
-
 }
-

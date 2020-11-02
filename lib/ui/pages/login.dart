@@ -6,7 +6,6 @@ import 'package:mingle/ui/widgets/loginForm.dart';
 
 import '../constants.dart';
 
-
 class Login extends StatelessWidget {
   final UserRepository _userRepository;
 

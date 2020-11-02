@@ -8,7 +8,9 @@ abstract class SearchState extends Equatable {
 }
 
 class InitialSearchState extends SearchState {}
+
 class LoadingState extends SearchState {}
+
 class LoadUserState extends SearchState {
   final User user, currentUser;
 
