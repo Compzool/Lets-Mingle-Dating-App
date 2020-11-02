@@ -123,7 +123,11 @@ class _SignUpFormState extends State<SignUpForm> {
                       controller: _emailController,
                       autovalidate: true,
                       validator: (_) {
-                        return !state.isEmailValid ? "Invalid Email" : null;
+                        if (!state.isEmailValid) {
+                          return Text("Invalid Email",style: TextStyle(color: Colors.white)).toString();
+                        } else {
+                          return null;
+                        }
                       },
                       decoration: InputDecoration(
                         labelText: "Email",
