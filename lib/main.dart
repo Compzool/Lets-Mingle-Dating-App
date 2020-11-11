@@ -1,4 +1,3 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
