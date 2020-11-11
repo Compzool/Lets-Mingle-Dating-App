@@ -124,7 +124,9 @@ class _SignUpFormState extends State<SignUpForm> {
                       autovalidate: true,
                       validator: (_) {
                         if (!state.isEmailValid) {
-                          return Text("Invalid Email",style: TextStyle(color: Colors.white)).toString();
+                          return Text("Invalid Email",
+                                  style: TextStyle(color: Colors.white))
+                              .toString();
                         } else {
                           return null;
                         }
