@@ -13,6 +13,8 @@ class Messaging extends StatefulWidget {
 class _MessagingState extends State<Messaging> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text("Hi",style: TextStyle(color: Colors.white),),
+    );
   }
 }
