@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:mingle/models/message.dart';
 import 'package:mingle/repositories/messaging.dart';
+import 'package:mingle/ui/constants.dart';
 import 'package:mingle/ui/widgets/photo.dart';
+import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import '../constants.dart';
 
 class MessageWidget extends StatefulWidget {
   final String messageId, currentUserId;

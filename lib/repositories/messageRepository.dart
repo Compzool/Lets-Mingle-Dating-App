@@ -1,10 +1,10 @@
-// TODO Implement this library.
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mingle/models/message.dart';
 import 'package:mingle/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MessageRepository {
   final Firestore _firestore;
+
   MessageRepository({Firestore firestore})
       : _firestore = firestore ?? Firestore.instance;
 
@@ -25,11 +25,11 @@ class MessageRepository {
         .document(selectedUserId)
         .delete();
   }
-  Future<User> getUserDetails({userId}) async{
+
+  Future<User> getUserDetail({userId}) async {
     User _user = User();
-    await _firestore
-        .collection('users')
-        .document(userId).get().then((user) {
+
+    await _firestore.collection('users').document(userId).get().then((user) {
       _user.uid = user.documentID;
       _user.name = user['name'];
       _user.photo = user['photoUrl'];
@@ -37,27 +37,31 @@ class MessageRepository {
       _user.location = user['location'];
       _user.gender = user['gender'];
       _user.interestedIn = user['interestedIn'];
-
     });
     return _user;
   }
 
-  Future<Message> getLastMessage({currentUserId,selectedUserId}) async{
+  Future<Message> getLastMessage({currentUserId, selectedUserId}) async {
     Message _message = Message();
+
     await _firestore
-    .collection('users')
-    .document(currentUserId)
-    .collection('chats')
-    .document(selectedUserId)
-    .collection('messages')
-    .orderBy('timestamp',descending: true)
-    .snapshots()
-    .first.then((doc) async {
-      await _firestore.collection('messages').document(doc.documents.first.documentID).get().then((message){
+        .collection('users')
+        .document(currentUserId)
+        .collection('chats')
+        .document(selectedUserId)
+        .collection('messages')
+        .orderBy('timestamp', descending: true)
+        .snapshots()
+        .first
+        .then((doc) async {
+      await _firestore
+          .collection('messages')
+          .document(doc.documents.first.documentID)
+          .get()
+          .then((message) {
         _message.text = message['text'];
         _message.photoUrl = message['photoUrl'];
         _message.timestamp = message['timestamp'];
-
       });
     });
 
