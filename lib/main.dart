@@ -7,6 +7,9 @@ import 'package:mingle/repositories/userRepository.dart';
 import 'package:mingle/ui/pages/home.dart';
 import 'bloc/authentication/bloc.dart';
 
+import 'package:flutter/material.dart';
+
+import './src/pages/index.dart';
 main() {
   WidgetsFlutterBinding.ensureInitialized();
   final UserRepository _userRepository = UserRepository();
@@ -16,4 +19,21 @@ main() {
       create: (context) => AuthenticationBloc(userRepository: _userRepository)
         ..add(AppStarted()),
       child: Home(userRepository: _userRepository)));
+}
+
+
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+      ),
+      home: IndexPage(),
+    );
+  }
 }
