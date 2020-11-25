@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:mingle/bloc/messaging/bloc.dart';
 import 'package:mingle/bloc/messaging/messaging_bloc.dart';
+import 'package:mingle/main.dart';
 import 'package:mingle/models/message.dart';
 import 'package:mingle/models/user.dart';
 import 'package:mingle/repositories/messaging.dart';
@@ -95,6 +96,15 @@ class _MessagingState extends State<Messaging> {
             Expanded(
               child: Text(widget.selectedUser.name),
             ),
+            IconButton(
+              icon: Icon(
+                Icons.video_call,
+                color: Colors.white,
+              ),
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+              },
+            )
           ],
         ),
       ),

@@ -46,6 +46,9 @@ dependencies:
   extended_image: ^0.7.2
   timeago: ^2.0.26
   uuid: ^2.0.4
+  formz: ^0.3.2
+  agora_rtc_engine:
+  permission_handler: ^4.4.0+hotfix.4
 
 dev_dependencies:
   flutter_test:
