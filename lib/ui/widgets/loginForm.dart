@@ -6,6 +6,7 @@ import 'package:mingle/ui/constants.dart';
 import 'package:mingle/ui/pages/signUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mingle/ui/widgets/reset.dart';
 
 class LoginForm extends StatefulWidget {
   final UserRepository _userRepository;
@@ -233,6 +234,24 @@ class _LoginFormState extends State<LoginForm> {
                           },
                           child: Text(
                             "Are you new? Get an Account",
+                            style: TextStyle(
+                                fontSize: size.height * 0.025,
+                                color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                          height: size.height * 0.02,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ResetScreen()
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Forget Password",
                             style: TextStyle(
                                 fontSize: size.height * 0.025,
                                 color: Colors.white),
