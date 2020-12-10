@@ -27,6 +27,7 @@ class Home extends StatelessWidget {
           }
           if (state is Authenticated) {
             return Tabs(
+              userRepository: _userRepository,
               userId: state.userId,
             );
           }
